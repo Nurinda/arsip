@@ -59,6 +59,7 @@ class Account extends CI_Controller{
   {
     $status = 2;
     if($this->input->post('loginValidation')) {$account = $this->account_model->loginValidation();$status = $account['status'];if ($status==1) {$this->session->set_userdata($account['account']); redirect(base_url('dashboard'));}}
+    elseif ($this->input->post('deleteArchive')) {$status = $this->account_model->deleteArchive($id); if($status==1){redirect(base_url('archive'));}}
     $data['content'] = $this->account_model->cDetailArchive($id, $status);
     $this->load->view('template', $data);
   }

@@ -104,6 +104,8 @@
 
       <div class="button-container">
         <a href="<?php echo base_url('archive'); ?>" class="btn btn-grey">Kembali</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteArchive">Hapus Arsip</button>
+
       </div>
     </form>
   </div>
@@ -137,6 +139,33 @@
           <button type="submit" class="btn btn-warning" name="uploadFile" value="uploadFile">Upload</button>
           <button type="submit" class="btn btn-danger" name="deleteFile" value="deleteFile">Hapus Foto</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteArchive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form  method="post">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Arsip ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Apakah anda sudah yakin menghapus arsip ini? silahkan lanjutkan dengan memasukan password akun anda</p>
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Masukan password akun anda" value=""  required>
+          </div>
+        </div>
+
+        <div class="modal-footer modal-danger">
+          <button type="submit" class="btn btn-danger" name="deleteArchive" value="deleteArchive">Hapus Arsip</button>
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
         </div>
       </div>
     </form>

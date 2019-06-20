@@ -99,7 +99,6 @@
             <tr>
               <th class="text-center">No</th>
               <th class="text-center">Judul</th>
-              <th class="text-center">Instansi</th>
               <th class="text-center">Status</th>
               <th class="text-center">Opsi</th>
             </tr>
@@ -108,7 +107,6 @@
             <tr>
               <td align="center"><?php echo $no; ?> </td>
               <td align="center"><?php echo $item->title; ?> </td>
-              <td align="center"><?php echo $item->institute; ?></td>
               <td align="center"><?php if($item->status==1){echo 'Dipinjam';} else {echo 'Tersedia';} ?></td>
               <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning">Detail</a> </td>
             </tr>

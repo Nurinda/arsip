@@ -224,7 +224,6 @@ class Admin_model extends CI_model{
 //      $this->updateData('document', 'id', $id, 'address', 'address' => str_replace(' ','_',$this->input->post('document_name')).$this->upload->data('file_ext'));
     }
     return $upload;
-
   }
 
   public function updateCapacity($id)

@@ -228,12 +228,18 @@ class Account_model extends CI_model{
   public function cDetailArchive($id, $status)
   {
     $data['notification'] = 'no';
-    if ($status==0) {
-      $data['notification'] = 'login0';
-    }
+    if ($status==0 || $status==3) {$data['notification'] = 'login0';}
+
     $data['detail'] = $this->getDataRow('view_archive', 'id', $id);
     $data['title'] = 'Detail Video';
     $data['view_name'] = 'detailArchive';
+    return $data;
+  }
+
+  public function deleteArchive($id)
+  {
+    $data = 3;
+    if ($this->input->post('password')==$this->session->userdata['password']) {$data = $this->deleteDP('archive', 'id', $id);}
     return $data;
   }
 
