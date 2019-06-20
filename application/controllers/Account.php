@@ -17,7 +17,7 @@ class Account extends CI_Controller{
   //okayy, nah biasanya controller itu butih model, model ini buat ngolah data, ibarat kalo di restoran,contrroller itu pelayannya, model itu kokinya hehee, misal di baris 24 ya,
   //dia butuh konten  buat login, dia panggil cLogin yang ada di account_model
 
-  
+
   public function logout()
   {
     $this->session->sess_destroy();

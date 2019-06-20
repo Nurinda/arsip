@@ -148,13 +148,17 @@ class Account_model extends CI_model{
     $where = array('id' => $this->session->userdata['id']);
     if ($this->input->post('password')=="") {
       $this->updateData('account', 'id', $this->session->userdata['id'], 'username', $this->input->post('username'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'asal', $this->input->post('asal'));
+      $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'institute', $this->input->post('institute'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'address', $this->input->post('address'));
+      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'email', $this->input->post('email'));
     } else {
       $this->updateData('account', 'id', $this->session->userdata['id'], 'username', $this->input->post('username'));
       $this->updateData('account', 'id', $this->session->userdata['id'], 'password', md5($this->input->post('username')));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'asal', $this->input->post('asal'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'institute', $this->input->post('institute'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'address', $this->input->post('address'));
+      $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
+      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'email', $this->input->post('email'));
     }
     $account['session'] = $this->setSession($this->session->userdata['id']);
     return $account;

@@ -19,15 +19,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label>Nama Lengkap</label>
                 <input type="text" name="fullname" class="form-control" placeholder="Masukan nama lengkap anda" value="<?php echo $this->session->userdata['fullname']; ?>" required>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Masukan email anda" value="<?php echo $this->session->userdata['email']; ?>" required>
@@ -49,11 +47,11 @@
       </div>
       <div class="card-body">
         <center>
-        <div class="author">
-        </div>
-        <p class="description text-center"><?php echo $this->session->userdata['email']?></p>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update Foto Profil</button>
-      </center>
+          <div class="author">
+          </div>
+          <p class="description text-center"><?php echo $this->session->userdata['email']?></p>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update Foto Profil</button>
+        </center>
 
       </div>
     </div>
@@ -63,7 +61,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form  method="post" enctype="multipart/form-data">
-    <div class="modal-content">
+      <div class="modal-content">
 
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Upload Foto</h5>
@@ -88,8 +86,8 @@
           <button type="submit" class="btn btn-warning" name="uploadFile" value="uploadFile">Upload</button>
           <button type="submit" class="btn btn-danger" name="deleteFile" value="deleteFile">Hapus Foto</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
   </div>
 </div>
