@@ -38,6 +38,7 @@ class Admin extends CI_Controller{
     if ($this->input->post('deleteAccount')) {$operation = $this->admin_model->deleteAccount($id); redirect(base_url('account'));}
     elseif ($this->input->post('resetPassword')) {$operation = $this->admin_model->resetPassword($id);}
     elseif ($this->input->post('search')) {$keyword = $this->input->post('keyword'); }
+    elseif ($this->input->post('updateCapacity')) {$this->admin_model->updateCapacity($id); }
     $data['content'] = $this->admin_model->cDetailAccount($id, $operation['status'], $keyword);
     $this->load->view('template', $data);
   }

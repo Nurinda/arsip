@@ -66,6 +66,7 @@
           <div class="button-container">
             <a href="<?php echo base_url('account'); ?>"><button type="button" class="btn btn-grey">Kembali</button></a>
             <button type="submit" class="btn btn-info" name="resetPassword" value="resetPassword">Reset password</button>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#extend">Extend Kapasitas</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Hapus Akun</button>
           </div>
         </form>
@@ -163,6 +164,32 @@
 
         <div class="modal-footer modal-danger">
           <button type="submit" class="btn btn-warning" name="search" value="search">Cari</button>
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="extend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form  method="post" >
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Kapasistas Entri Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Besaran Kapasitas</label>
+            <input type="text" name="capacity" class="form-control" placeholder="Masukan kapasistas tambahan" value="<?php echo $content['account']->capacity; ?>">
+          </div>
+        </div>
+
+        <div class="modal-footer modal-danger">
+          <button type="submit" class="btn btn-warning" name="updateCapacity" value="updateCapacity">Update Kapasitas</button>
           <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
         </div>
       </div>

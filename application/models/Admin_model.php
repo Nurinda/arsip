@@ -227,5 +227,10 @@ class Admin_model extends CI_model{
 
   }
 
+  public function updateCapacity($id)
+  {
+    return $this->updateData('contributor', 'id', $id, 'capacity', $this->input->post('capacity'));
+  }
+
 }
  ?>
