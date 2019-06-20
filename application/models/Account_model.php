@@ -137,7 +137,7 @@ class Account_model extends CI_model{
 
   public function cProfile($notification)
   {
-    $data['notification'] = 'profile'.$notification.$this->session->userdata['role'];
+    $data['notification'] = 'profile'.$notification.ucfirst($this->session->userdata['role']);
     $data['view_name'] = 'profile';
     $data['title'] = 'Profil';
     return $data;
