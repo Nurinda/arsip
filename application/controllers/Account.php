@@ -5,15 +5,16 @@ class Account extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-//    error_reporting(0);
     $this->load->model('account_model');
+    error_reporting(0);
+
   }
 
   //nah berhubung fungsi login ada, berarti ci jalanin semua yang ada di fungsi login. Okaayy paham, lalu ?
-  //terus $this->input->post('blablabla'), itu maksudnya kalo ada interaksi dari pengguna, misal mejet button namanya apa gitu, 
+  //terus $this->input->post('blablabla'), itu maksudnya kalo ada interaksi dari pengguna, misal mejet button namanya apa gitu,
 
   //pahaamm ndaaa :(( iyaa tiitt, pahaamm. jelasin alurnyaa ajaa. soal kodingan kan bisa beljar di internet :v
-  //okayy, nah biasanya controller itu butih model, model ini buat ngolah data, ibarat kalo di restoran,contrroller itu pelayannya, model itu kokinya hehee, misal di baris 24 ya, 
+  //okayy, nah biasanya controller itu butih model, model ini buat ngolah data, ibarat kalo di restoran,contrroller itu pelayannya, model itu kokinya hehee, misal di baris 24 ya,
   //dia butuh konten  buat login, dia panggil cLogin yang ada di account_model
 
   public function login()
@@ -27,7 +28,7 @@ class Account extends CI_Controller{
     }
 
     //nah data yang dikirim dari model tadi diterima sama kontroller dalam bentuk $data[''], terus ditampilin ke view namanya LOGIN, gitu ajaa siii hehee. Okaayy pahaaamm, ku coba otak atik duluu yaakk, ntar kalo bingung ku tanyaa kamu lagiii. MAKASIIHHH ITsipIpTOpTOTO siapp dadaah
-    
+
     $this->load->view('login', $data);
   }
 
@@ -39,8 +40,8 @@ class Account extends CI_Controller{
 
   public function dashboard()
   {
-    $data['content'] = $this->account_model->cDashboard(); 
-    // $data['video']   = $this->account_model->video(); //INI SALAHH 
+    $data['content'] = $this->account_model->cDashboard();
+    // $data['video']   = $this->account_model->video(); //INI SALAHH
     $this->load->view('template', $data);
   }
 
@@ -68,13 +69,19 @@ class Account extends CI_Controller{
     $this->load->view('template', $data);
   }
 
+  public function detailArchive($id)
+  {
+    $data['content'] = $this->account_model->cDetailArchive($id);
+    $this->load->view('template', $data);
+  }
+
   public function document()
   {
     $update['file'] = null;
     if($this->input->post('uploadFile')){$update = $this->account_model->processUploadFile();}
     elseif($this->input->post('search')){$update['file'] = $this->input->post('keyword');}
     $data['content'] = $this->account_model->cDocument($update['file']);
-      $this->load->view('template1', $data);
+      $this->load->view('template', $data);
   }
 
   public function download($id)

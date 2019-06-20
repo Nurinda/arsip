@@ -59,8 +59,8 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Asal</label>
-              <input type="text" name="asal" class="form-control" placeholder="Masukan asal instansi" value="">
+              <label>Asal Instansi</label>
+              <input type="text" name="institute" class="form-control" placeholder="Masukan asal instansi" value="">
             </div>
           </div>
 

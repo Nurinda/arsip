@@ -2,44 +2,32 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Upload Dokumen Baru</button>
         <button class="btn btn-info" data-toggle="modal" data-target="#myModal1">Pencarian</button>
         <table class="table">
           <thead>
             <tr>
+              <th class="text-center">No</th>
               <th class="text-center">Judul</th>
-              <th class="text-center">Id</th>
-              <th class="text-center">Link</th>
+              <th class="text-center">Instansi</th>
               <th class="text-center">Status</th>
+              <th class="text-center">Opsi</th>
             </tr>
           </thead>
-                      
-            <?php $i = 1; foreach ($content['video'] as $item):?>
+          <?php $no = 1; foreach ($content['video'] as $item):?>
             <tr>
-    <!-- <td align="center"><?php echo $no++; ?></td> -->
-    <td align="center"><?php echo $item->judul; ?> </td>
-    <td align="center"><?php echo $item->id; ?> </td>
-    <td align="center"><?php echo $item->link; ?></td>
-    <td align="center"><?php echo $item->status; ?></td>
-    <td class="td-actions text-center">
-                  <center>
-                    <a href="<?php echo base_url('detail'.ucfirst($this->session->userdata['role'])).'/'.$item->id; ?>">
-                      <button type="button" rel="tooltip" class="btn btn-info">
-                        <i class="material-icons">import_contacts</i>Detail
-                      </button>
-
-                    </a>
-
-                  </center>
-                </td>
-  </tr>
-
-    <?php $i++; endforeach; ?>
-        </table>
+              <td align="center"><?php echo $no; ?> </td>
+              <td align="center"><?php echo $item->title; ?> </td>
+              <td align="center"><?php echo $item->institute; ?></td>
+              <td align="center"><?php if($item->status==1){echo 'Dipinjam';} else {echo 'Tersedia';} ?></td>
+              <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning">Detail</a> </td>
+            </tr>
+            <?php $no++; endforeach; ?>
+          </table>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

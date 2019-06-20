@@ -189,7 +189,7 @@ class Account_model extends CI_model{
 
   public function cDashboard()
   {//kalo mau nambahin data dimodelnyaa nurinn
-    $data['video'] = $this->getAllData('video'); //INI YANG BENERR
+    $data['video'] = $this->getAllData('view_archive'); //INI YANG BENERR
     $data['title'] = 'Dashboard';
     $data['view_name'] = 'no';
     $data['notification'] = 'dashboard'.ucfirst($this->session->userdata['role']);
@@ -206,14 +206,10 @@ class Account_model extends CI_model{
 
   public function cDocument($keyword)
   {
-//    var_dump($keyword==null);die;
     if ($keyword==null) {
-      $data['video'] = $this->getAllData('view_video');
+      $data['video'] = $this->getAllData('view_archive');
     } else {
-      $data['video'] = $this->db->query('select * from view_video where nomor_video LIKE "%'.$keyword.'%" or tokoh LIKE "%'.$keyword.'%" or size LIKE "%'.$keyword.'%" or no_video LIKE "%'.$keyword.'%" or asal LIKE "%'.$keyword.'%" or tahun_alih_media LIKE "%'.$keyword.'%" ')->result();
-   //   var_dump($data['list']);die;
-
-      
+      $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
     }
     $data['title'] = 'Rekap Video';
     $data['view_name'] = 'document';
@@ -229,6 +225,14 @@ class Account_model extends CI_model{
       $this->db->insert('document', $data);
     }
     return $upload;
+  }
+
+  public function cDetailArchive($id)
+  {
+    $data['title'] = 'Detail Video';
+    $data['view_name'] = 'detailArchive';
+    $data['notification'] = 'no';
+    return $data;
   }
 
 }
