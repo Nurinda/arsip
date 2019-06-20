@@ -125,17 +125,6 @@ class Account_model extends CI_model{
 
 
   //application
-  public function cLogin($notification)
-  {
-    if ($notification=='' && $notification!=0) {
-      $notification = 1;
-    }
-    $data['notification'] = 'login'.$notification;
-    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
-    return $data;
-  //nanti cLogin bakalan dieksesui, cLogin bener2 ngolah data sesuai yang dipinginin sama controller, abis itu data yang udah jadi dikirim lagi ke kontoller buat ditampilin
-
-  }
 
   public function loginValidation()
   {
@@ -204,16 +193,21 @@ class Account_model extends CI_model{
     return $data;
   }
 
-  public function cDocument($keyword)
+  public function cArchive($keyword, $status)
   {
-    if ($keyword==null) {
+
+    $data['notification'] = 'no';
+    if ($keyword==null & $status==2) {
       $data['video'] = $this->getAllData('view_archive');
+    } elseif ($status==0) {
+      $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
+      $data['notification'] = 'login0';
+//      var_dump($status==0);die;
     } else {
       $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
     }
     $data['title'] = 'Rekap Video';
-    $data['view_name'] = 'document';
-    $data['notification'] = 'no';
+    $data['view_name'] = 'archive';
     return $data;
   }
 
@@ -227,12 +221,15 @@ class Account_model extends CI_model{
     return $upload;
   }
 
-  public function cDetailArchive($id)
+  public function cDetailArchive($id, $status)
   {
+    $data['notification'] = 'no';
+    if ($status==0) {
+      $data['notification'] = 'login0';
+    }
     $data['detail'] = $this->getDataRow('view_archive', 'id', $id);
     $data['title'] = 'Detail Video';
     $data['view_name'] = 'detailArchive';
-    $data['notification'] = 'no';
     return $data;
   }
 

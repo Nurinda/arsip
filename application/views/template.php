@@ -35,12 +35,7 @@
           if ($this->session->userdata['login']){
             $this->load->view($this->session->userdata['role'].'/menu');
           } else {
-            echo '<li class="nav-item active">
-              <a class="nav-link" href="'.base_url('login').' ">
-                <i class="material-icons">dashboard</i>
-                <p>Login</p>
-              </a>
-            </li>';
+            echo '&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><p>Login Pengguna SKID</p></button>';
           } ?>
         </ul>
       </div>
@@ -91,6 +86,39 @@
           <!-- your footer here -->
         </div>
       </footer>
+    </div>
+  </div>
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form  method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login Pengguna</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="modal-body">
+                <input type="text" name="username" placeholder="Masukan username anda" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="modal-body">
+                <input type="password" name="password" placeholder="Masukan password anda" class="form-control">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer modal-danger">
+            <button type="submit" class="btn btn-warning" name="loginValidation" value="loginValidation">Login</button>
+            <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 

@@ -17,21 +17,7 @@ class Account extends CI_Controller{
   //okayy, nah biasanya controller itu butih model, model ini buat ngolah data, ibarat kalo di restoran,contrroller itu pelayannya, model itu kokinya hehee, misal di baris 24 ya,
   //dia butuh konten  buat login, dia panggil cLogin yang ada di account_model
 
-  public function login()
-  {
-    if ($this->input->post('loginValidation')) {
-      $account = $this->account_model->loginValidation();
-      $status = $account['status'];
-      if ($status==1) {$this->session->set_userdata($account['account']); redirect(base_url('dashboard'));} else {  $data['content'] = $this->account_model->cLogin($status);}
-    } else {
-      $data['content'] = $this->account_model->cLogin(1);
-    }
-
-    //nah data yang dikirim dari model tadi diterima sama kontroller dalam bentuk $data[''], terus ditampilin ke view namanya LOGIN, gitu ajaa siii hehee. Okaayy pahaaamm, ku coba otak atik duluu yaakk, ntar kalo bingung ku tanyaa kamu lagiii. MAKASIIHHH ITsipIpTOpTOTO siapp dadaah
-
-    $this->load->view('login', $data);
-  }
-
+  
   public function logout()
   {
     $this->session->sess_destroy();
@@ -71,16 +57,19 @@ class Account extends CI_Controller{
 
   public function detailArchive($id)
   {
-    $data['content'] = $this->account_model->cDetailArchive($id);
+    $status = 2;
+    if($this->input->post('loginValidation')) {$account = $this->account_model->loginValidation();$status = $account['status'];if ($status==1) {$this->session->set_userdata($account['account']); redirect(base_url('dashboard'));}}
+    $data['content'] = $this->account_model->cDetailArchive($id, $status);
     $this->load->view('template', $data);
   }
 
   public function archive()
   {
-    $update['file'] = null;
+    $update['file'] = null;$status = 2;
     if($this->input->post('uploadFile')){$update = $this->account_model->processUploadFile();}
     elseif($this->input->post('search')){$update['file'] = $this->input->post('keyword');}
-    $data['content'] = $this->account_model->cDocument($update['file']);
+    elseif($this->input->post('loginValidation')) {$account = $this->account_model->loginValidation();$status = $account['status'];if ($status==1) {$this->session->set_userdata($account['account']); redirect(base_url('dashboard'));}}
+    $data['content'] = $this->account_model->cArchive($update['file'],$status);
       $this->load->view('template', $data);
   }
 
