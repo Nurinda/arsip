@@ -229,6 +229,7 @@ class Account_model extends CI_model{
 
   public function cDetailArchive($id)
   {
+    $data['detail'] = $this->getDataRow('view_archive', 'id', $id);
     $data['title'] = 'Detail Video';
     $data['view_name'] = 'detailArchive';
     $data['notification'] = 'no';

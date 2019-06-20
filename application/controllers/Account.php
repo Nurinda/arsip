@@ -75,7 +75,7 @@ class Account extends CI_Controller{
     $this->load->view('template', $data);
   }
 
-  public function document()
+  public function archive()
   {
     $update['file'] = null;
     if($this->input->post('uploadFile')){$update = $this->account_model->processUploadFile();}

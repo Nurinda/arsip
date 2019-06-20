@@ -9,7 +9,7 @@ $route['login'] = 'account/login'; //nah ini ketemu rute buat login, langkah sel
 $route['logout'] = 'account/logout';
 $route['dashboard'] = 'account/dashboard';
 $route['profile'] = 'account/profile';
-$route['document'] = 'account/document';
+$route['archive'] = 'account/archive';
 $route['download/(:any)'] = 'account/download/$1';
 $route['detail/(:any)'] = 'account/detail/$1';
 $route['detailArchive/(:any)'] = 'account/detailArchive/$1';
@@ -24,6 +24,6 @@ $route['detailAdmin/(:any)'] = 'admin/detailAdmin/$1';
 $route['detailContributor/(:any)'] = 'contributor/detailContributor/$1';
 
 #DEFAULT STRUCTURE
-$route['default_controller'] = 'account/document';
+$route['default_controller'] = 'account/archive';
 $route['404_override'] = 'account/error404';
 $route['translate_uri_dashes'] = FALSE;
