@@ -3,6 +3,7 @@
     <i class="material-icons">dashboard</i>
     <p>Dashboard</p>
   </a>
+</li>
 <li class="nav-item active">
   <a class="nav-link" href=" <?php echo base_url('account'); ?> ">
     <i class="material-icons">accessibility_new</i>
@@ -10,9 +11,9 @@
   </a>
 </li>
 <li class="nav-item active">
-  <a class="nav-link" href=" <?php echo base_url('document'); ?> ">
+  <a class="nav-link" href=" <?php echo base_url('archive'); ?> ">
     <i class="material-icons">widgets</i>
-    <p>Dokumen</p>
+    <p>Arsip</p>
   </a>
 </li>
 

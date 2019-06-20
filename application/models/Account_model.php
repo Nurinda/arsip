@@ -125,17 +125,6 @@ class Account_model extends CI_model{
 
 
   //application
-  public function cLogin($notification)
-  {
-    if ($notification=='' && $notification!=0) {
-      $notification = 1;
-    }
-    $data['notification'] = 'login'.$notification;
-    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
-    return $data;
-  //nanti cLogin bakalan dieksesui, cLogin bener2 ngolah data sesuai yang dipinginin sama controller, abis itu data yang udah jadi dikirim lagi ke kontoller buat ditampilin
-
-  }
 
   public function loginValidation()
   {
@@ -159,13 +148,17 @@ class Account_model extends CI_model{
     $where = array('id' => $this->session->userdata['id']);
     if ($this->input->post('password')=="") {
       $this->updateData('account', 'id', $this->session->userdata['id'], 'username', $this->input->post('username'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'asal', $this->input->post('asal'));
+      $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'institute', $this->input->post('institute'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'address', $this->input->post('address'));
+      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'email', $this->input->post('email'));
     } else {
       $this->updateData('account', 'id', $this->session->userdata['id'], 'username', $this->input->post('username'));
       $this->updateData('account', 'id', $this->session->userdata['id'], 'password', md5($this->input->post('username')));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
-      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'asal', $this->input->post('asal'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'institute', $this->input->post('institute'));
+      $this->updateData('contributor', 'id', $this->session->userdata['id'], 'address', $this->input->post('address'));
+      $this->updateData('account', 'id', $this->session->userdata['id'], 'fullname', $this->input->post('fullname'));
+      $account['status'] = $this->updateData('account', 'id', $this->session->userdata['id'], 'email', $this->input->post('email'));
     }
     $account['session'] = $this->setSession($this->session->userdata['id']);
     return $account;
@@ -189,7 +182,7 @@ class Account_model extends CI_model{
 
   public function cDashboard()
   {//kalo mau nambahin data dimodelnyaa nurinn
-    $data['video'] = $this->getAllData('video'); //INI YANG BENERR
+    $data['video'] = $this->getAllData('view_archive'); //INI YANG BENERR
     $data['title'] = 'Dashboard';
     $data['view_name'] = 'no';
     $data['notification'] = 'dashboard'.ucfirst($this->session->userdata['role']);
@@ -204,20 +197,21 @@ class Account_model extends CI_model{
     return $data;
   }
 
-  public function cDocument($keyword)
+  public function cArchive($keyword, $status)
   {
-//    var_dump($keyword==null);die;
-    if ($keyword==null) {
-      $data['video'] = $this->getAllData('view_video');
-    } else {
-      $data['video'] = $this->db->query('select * from view_video where nomor_video LIKE "%'.$keyword.'%" or tokoh LIKE "%'.$keyword.'%" or size LIKE "%'.$keyword.'%" or no_video LIKE "%'.$keyword.'%" or asal LIKE "%'.$keyword.'%" or tahun_alih_media LIKE "%'.$keyword.'%" ')->result();
-   //   var_dump($data['list']);die;
 
-      
+    $data['notification'] = 'no';
+    if ($keyword==null & $status==2) {
+      $data['video'] = $this->getAllData('view_archive');
+    } elseif ($status==0) {
+      $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
+      $data['notification'] = 'login0';
+//      var_dump($status==0);die;
+    } else {
+      $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
     }
     $data['title'] = 'Rekap Video';
-    $data['view_name'] = 'document';
-    $data['notification'] = 'no';
+    $data['view_name'] = 'archive';
     return $data;
   }
 
@@ -229,6 +223,18 @@ class Account_model extends CI_model{
       $this->db->insert('document', $data);
     }
     return $upload;
+  }
+
+  public function cDetailArchive($id, $status)
+  {
+    $data['notification'] = 'no';
+    if ($status==0) {
+      $data['notification'] = 'login0';
+    }
+    $data['detail'] = $this->getDataRow('view_archive', 'id', $id);
+    $data['title'] = 'Detail Video';
+    $data['view_name'] = 'detailArchive';
+    return $data;
   }
 
 }

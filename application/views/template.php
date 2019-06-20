@@ -1,8 +1,4 @@
 <!doctype html>
-<?php if ($this->session->userdata['login']!='true'){
-  redirect(base_url(''));
-
-} ?>
 <html lang="en">
 
 <head>
@@ -35,7 +31,12 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <?php $this->load->view($this->session->userdata['role'].'/menu'); ?>
+          <?php
+          if ($this->session->userdata['login']){
+            $this->load->view($this->session->userdata['role'].'/menu');
+          } else {
+            echo '&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><p>Login Pengguna SKID</p></button>';
+          } ?>
         </ul>
       </div>
     </div>
@@ -60,14 +61,14 @@
         <div class="container-fluid">
           <ol class="breadcrumb" style="background:white;">
             <li class="breadcrumb-item">SIKDJateng</li>
-            <li class="breadcrumb-item"><?php echo ucfirst($this->session->userdata['role']); ?></li>
+            <li class="breadcrumb-item"><?php if($this->session->userdata['login']){echo ucfirst($this->session->userdata['role']);} else {echo 'Guest';} ?></li>
             <li class="breadcrumb-item active"><?php echo ucfirst($content['title']); ?></li>
           </ol>
           <?php $this->load->view('notification/'.$content['notification']); ?>
           <?php
           if ($content['view_name'] == 'document1' | $content['view_name'] == 'document0') {
             $this->load->view($content['view_name']);
-          } else {
+        } else {
             $this->load->view($this->session->userdata['role'].'/'.$content['view_name']);
           }?>
         </div>
@@ -85,6 +86,39 @@
           <!-- your footer here -->
         </div>
       </footer>
+    </div>
+  </div>
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form  method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login Pengguna</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="modal-body">
+                <input type="text" name="username" placeholder="Masukan username anda" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="modal-body">
+                <input type="password" name="password" placeholder="Masukan password anda" class="form-control">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer modal-danger">
+            <button type="submit" class="btn btn-warning" name="loginValidation" value="loginValidation">Login</button>
+            <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 
