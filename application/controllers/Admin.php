@@ -6,7 +6,7 @@ class Admin extends CI_Controller{
   {
     parent::__construct();
     $this->load->model('admin_model');
-    error_reporting(0);
+//    error_reporting(0);
     if (!$this->session->userdata['login']) {
       redirect(base_url('login'));
     } elseif ($this->session->userdata['role']!='admin') {
@@ -34,10 +34,11 @@ class Admin extends CI_Controller{
 
   public function detailAccount($id)
   {
-    $delete['status'] = 0;
-    if ($this->input->post('deleteAccount')) {$delete = $this->admin_model->deleteAccount($id); redirect(base_url('account'));}
-    elseif ($this->input->post('resetPassword')) {$delete = $this->admin_model->resetPassword($id);}
-    $data['content'] = $this->admin_model->cDetailAccount($id, $delete['status']);
+    $operation['status'] = 0;$keyword=null;
+    if ($this->input->post('deleteAccount')) {$operation = $this->admin_model->deleteAccount($id); redirect(base_url('account'));}
+    elseif ($this->input->post('resetPassword')) {$operation = $this->admin_model->resetPassword($id);}
+    elseif ($this->input->post('search')) {$keyword = $this->input->post('keyword'); }
+    $data['content'] = $this->admin_model->cDetailAccount($id, $operation['status'], $keyword);
     $this->load->view('template', $data);
   }
 

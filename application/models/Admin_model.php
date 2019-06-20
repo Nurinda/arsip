@@ -22,6 +22,14 @@ class Admin_model extends CI_model{
     return $query->row();
   }
 
+  public function getSomeData($table, $var, $val)
+  {
+    $where = array($var => $val);
+    $query = $this->db->get_where($table, $where);
+    return $query->result();
+  }
+
+
   public function getDataRow2($table, $var1, $val1, $var2, $val2)
   {
     $where = array($var1 => $val1, $var2 => $val2);
@@ -151,9 +159,11 @@ class Admin_model extends CI_model{
     return $status;
   }
 
-  public function cDetailAccount($id, $notification)
+  public function cDetailAccount($id, $notification,$keyword)
   {
-    $data['account'] = $this->admin_model->getDataRow('account', 'id', $id);
+    if ($keyword=null) {$data['archive'] = $this->getSomeData('view_archive', 'id_contributor', $id);}
+    else {$data['archive']=$this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" and id_contributor = '.$id.' or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result(); }
+    $data['account'] = $this->admin_model->getDataRow('view_contributor', 'id', $id);
     $data['title'] = 'Detail Akun @'.$data['account']->username;
     $data['view_name'] = 'detailAccount';
     $data['notification'] = 'detailAccount'.$notification;
