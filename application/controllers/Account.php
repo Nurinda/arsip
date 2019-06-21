@@ -7,7 +7,7 @@ class Account extends CI_Controller{
     parent::__construct();
     $this->load->model('account_model');
     $this->load->model('contributor_model');
-
+    error_reporting(0);
   }
 
   //nah berhubung fungsi login ada, berarti ci jalanin semua yang ada di fungsi login. Okaayy paham, lalu ?

@@ -101,6 +101,7 @@ class Contributor_model extends CI_model{
         'sub_category'=> $this->input->post('sub_category'),
        );
        $this->db->insert('archive', $data);
+       
     }
   }
 
