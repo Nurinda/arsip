@@ -10,19 +10,19 @@ $route['logout'] = 'account/logout';
 $route['dashboard'] = 'account/dashboard';
 $route['profile'] = 'account/profile';
 $route['archive'] = 'account/archive';
-$route['download/(:any)'] = 'account/download/$1';
-$route['detail/(:any)'] = 'account/detail/$1';
+//$route['download/(:any)'] = 'account/download/$1';
+//$route['detail/(:any)'] = 'account/detail/$1';
 $route['detailArchive/(:any)'] = 'account/detailArchive/$1';
 #ADMIN AREA
 $route['webConf'] = 'admin/webConf';
 $route['account'] = 'admin/account';
 $route['detailAccount/(:any)'] = 'admin/detailAccount/$1';
-$route['detailAdmin/(:any)'] = 'admin/detailAdmin/$1';
+//$route['detailAdmin/(:any)'] = 'admin/detailAdmin/$1';
 
 
 #CONTRIBUTOR AREA
 $route['detailContributor/(:any)'] = 'contributor/detailContributor/$1';
-
+$route['editArchive/(:any)'] = 'contributor/editArchive/$1';
 #DEFAULT STRUCTURE
 $route['default_controller'] = 'account/archive';
 $route['404_override'] = 'account/error404';

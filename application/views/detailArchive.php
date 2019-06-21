@@ -104,7 +104,6 @@
 
       <div class="button-container">
         <a href="<?php echo base_url('archive'); ?>" class="btn btn-grey">Kembali</a>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteArchive">Hapus Arsip</button>
       </div>
     </form>
   </div>

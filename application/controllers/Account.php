@@ -10,13 +10,6 @@ class Account extends CI_Controller{
     error_reporting(0);
   }
 
-  //nah berhubung fungsi login ada, berarti ci jalanin semua yang ada di fungsi login. Okaayy paham, lalu ?
-  //terus $this->input->post('blablabla'), itu maksudnya kalo ada interaksi dari pengguna, misal mejet button namanya apa gitu,
-
-  //pahaamm ndaaa :(( iyaa tiitt, pahaamm. jelasin alurnyaa ajaa. soal kodingan kan bisa beljar di internet :v
-  //okayy, nah biasanya controller itu butih model, model ini buat ngolah data, ibarat kalo di restoran,contrroller itu pelayannya, model itu kokinya hehee, misal di baris 24 ya,
-  //dia butuh konten  buat login, dia panggil cLogin yang ada di account_model
-
 
   public function logout()
   {

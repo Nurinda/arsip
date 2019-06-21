@@ -13,16 +13,13 @@ class Contributor extends CI_Controller{
       redirect(base_url('error404'));
     }
   }
-  public function detailContributor($id)
+
+  public function editArchive($id)
   {
-    if ($this->input->post('updateDocument')) {$operation = $this->contributor_model->updateDocument($id);}
-    elseif ($this->input->post('deleteDocument')) {$operation = $this->contributor_model->deleteDocument($id); if($operation['status']==1){redirect(base_url($operation['redirect']));}}
-    elseif ($this->input->post('uploadDocument')) {$operation = $this->contributor_model->uploadRevision($id);}
-    $data['content'] = $this->contributor_model->cDetailDocument($id);
+    if ($this->input->post('updateArchive')) {$this->contributor_model->updateArchive($id);}
+    $data['content'] = $this->contributor_model->cEditArchive($id);
     $this->load->view('template', $data);
-
   }
-
 
 }
  ?>
