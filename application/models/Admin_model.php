@@ -141,9 +141,16 @@ class Admin_model extends CI_model{
     return $status;
   }
 
-  public function cAccount($notification)
+  public function cAccount($notification, $keyword)
   {
-    $data['account'] = $this->admin_model->getAllData('account');
+    if ($keyword!=null) {
+
+      $data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%" ')->result();
+
+    } else {
+
+      $data['account'] = $this->admin_model->getAllData('account');
+    }
     $data['title'] = 'Pengaturan Akun';
     $data['view_name'] = 'account';
     $data['notification'] = 'account'.$notification;
