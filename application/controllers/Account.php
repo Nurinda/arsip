@@ -6,7 +6,7 @@ class Account extends CI_Controller{
   {
     parent::__construct();
     $this->load->model('account_model');
-    error_reporting(0);
+    $this->load->model('contributor_model');
 
   }
 
@@ -67,7 +67,7 @@ class Account extends CI_Controller{
   public function archive()
   {
     $update['file'] = null;$status = 2;
-    if($this->input->post('uploadFile')){$update = $this->account_model->processUploadFile();}
+    if($this->input->post('addArchive')){$update = $this->contributor_model->addArchive();}
     elseif($this->input->post('search')){$update['file'] = $this->input->post('keyword');}
     elseif($this->input->post('loginValidation')) {$account = $this->account_model->loginValidation();$status = $account['status'];if ($status==1) {$this->session->set_userdata($account['account']); redirect(base_url('dashboard'));}}
     $data['content'] = $this->account_model->cArchive($update['file'],$status);

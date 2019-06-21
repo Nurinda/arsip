@@ -210,6 +210,9 @@ class Account_model extends CI_model{
     } else {
       $data['video'] = $this->db->query('select * from view_archive where title LIKE "%'.$keyword.'%" or description LIKE "%'.$keyword.'%" or producer LIKE "%'.$keyword.'%" or copyright LIKE "%'.$keyword.'%" or production_place LIKE "%'.$keyword.'%" or contributor LIKE "%'.$keyword.'%" or filetype LIKE "%'.$keyword.'%" ')->result();
     }
+    $data['category'] = $this->getAllData('category');
+//    var_dump($data['category']);die;
+    $data['sub_category'] = $this->getAllData('sub_category');
     $data['title'] = 'Rekap Video';
     $data['view_name'] = 'archive';
     return $data;

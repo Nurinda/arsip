@@ -80,47 +80,27 @@ class Contributor_model extends CI_model{
 
 
   //application
-
-
-  public function cDetailDocument($id)
+  public function addArchive()
   {
-    $data['detail'] = $this->getDataRow('view_document', 'id', $id);
-    $data['title'] = 'Detail Dokumen';
-    $data['view_name'] = 'detail';
-    $data['notification'] = 'no';
-    return $data;
-  }
-
-  public function updateDocument($id)
-  {
-    $data = array('document_name' => $this->input->post('document_name'), 'document_info' => $this->input->post('document_info'));
-    $where = array('id' => $id );
-    $this->db->where($where);
-    $operation['status'] = $this->db->update('document', $data);
-    return $operation;
-  }
-
-  public function deleteDocument($id)
-  {
-    if (md5($this->input->post('password'))==$this->session->userdata['password']) {
-      unlink('./assets/upload/'.$this->getDataRow('document', 'id', $id)->address);
-      $operation['status'] = $this->deleteData('document', 'id', $id);
-      $operation['redirect'] = 'document';
-    } else {
-      $operation['redirect'] = 'detail'.ucfirst($this->session->userdata['role']).'/'.$id;
-      $operation['status'] = 0;
+    if ($this->session->userdata['role']=='contributor' && $this->getDataRow('view_contributor', 'id', $this->session->userdata['id'])->storage_available > 0) {
+      $data = array(
+        'title' => $this->input->post('title'),
+        'video_number' => $this->input->post('video_number'),
+        'description' => $this->input->post('description'),
+        'producer' => $this->input->post('producer'),
+        'production_date' => $this->input->post('production_date'),
+        'production_place' => $this->input->post('production_place'),
+        'copyright' => $this->input->post('copyright'),
+        'duration_hour' => $this->input->post('duration_hour'),
+        'duration_minute' => $this->input->post('duration_minute'),
+        'duration_second' => $this->input->post('duration_second'),
+        'link' => $this->input->post('link'),
+        'storage' => $this->input->post('storage'),
+        'id_contributor' => $this->session->userdata['id'],
+        'category' => $this->getDataRow('sub_category', 'id', $this->input->post('sub_category'))->id_category,
+        'sub_category'=> $this->input->post('sub_category'),
+       );
     }
-    return $operation;
-  }
-
-  public function uploadRevision($id)
-  {
-    $upload = $this->uploadFile($this->getDataRow('document', 'id', $id)->document_name, 'pdf|xls|xlsx|doc|docx|jpg');
-    if($upload['status']==1){
-//      $this->updateData('document', 'id', $id, 'address', 'address' => str_replace(' ','_',$this->input->post('document_name')).$this->upload->data('file_ext'));
-    }
-    return $upload;
-
   }
 
 }
