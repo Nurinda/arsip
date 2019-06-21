@@ -158,15 +158,17 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>Kategori Video</label>
-                                  <select class="js-example-1" name="id">
-                                    <option value="0" selected>Silahkan Pilih</option>
-                                    <?php foreach ($content['category'] as $item): ?>
-                                      <option value="<?php echo $item->id; ?>"><?php echo $item->category; ?></option>
-                                    <?php endforeach; ?>
-                                  </select>
-                                </div>
+                                    <div class="form-group">
+                                      <label>Kategori Video</label>
+                                      <select class="js-example-1" name="id">
+                                        <option value="0" disabled selected>Silahkan Pilih</option>
+                                        <?php foreach ($content['category'] as $item): ?>
+                                          <?php foreach ($content['sub_category'] as $item1): if($item1->id_category!=$item->id){continue;}?>
+                                          <option value="<?php echo $item1->id; ?>"><?php echo $item->category.' - '.$item1->sub_category; ?></option>
+                                        <?php endforeach; ?>
+                                      <?php endforeach; ?>
+                                      </select>
+                                    </div>
                               </div>
                               </div>
 

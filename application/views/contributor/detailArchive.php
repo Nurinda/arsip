@@ -162,7 +162,7 @@
                                     <option value="0" disabled selected>Silahkan Pilih</option>
                                     <?php foreach ($content['category'] as $item): ?>
                                       <?php foreach ($content['sub_category'] as $item1): if($item1->id_category!=$item->id){continue;}?>
-                                      <option value="<?php echo $item1->id; ?>"><?php echo $item->category.' ---- '.$item1->id; ?></option>
+                                      <option value="<?php echo $item1->id; ?>"><?php echo $item->category.' - '.$item1->id; ?></option>
                                     <?php endforeach; ?>
                                   <?php endforeach; ?>
                                   </select>
