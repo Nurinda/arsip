@@ -19,6 +19,8 @@ class Account extends CI_Controller{
 
   public function dashboard()
   {
+    if (!$this->session->userdata['login']) {redirect(base_url('archive'));}
+
     $data['content'] = $this->account_model->cDashboard();
     // $data['video']   = $this->account_model->video(); //INI SALAHH
     $this->load->view('template', $data);
@@ -26,6 +28,8 @@ class Account extends CI_Controller{
 
   public function profile()
   {
+    if (!$this->session->userdata['login']) {redirect(base_url('archive'));}
+
     $update['status'] = 2;
     if ($this->input->post('updateAccount')) {
       $update = $this->account_model->updateAccount();
