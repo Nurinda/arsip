@@ -58,9 +58,17 @@ class Admin extends CI_Controller{
   {
     $keyword = null;
     if ($this->input->post('search')) {$keyword = $this->input->post('keyword');}
-    elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory($id);}
+    elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory($id);redirect(base_url('detailCategory/'.$this->input->post('id')));}
     elseif ($this->input->post('createSubcategory')) {$this->admin_model->createSubcategory($id);}
     $data['content'] = $this->admin_model->cDetailCategory($id, $keyword);
+    $this->load->view('template', $data);
+  }
+
+  public function detailSubcategory($id)
+  {
+    if ($this->input->post('updateSubcategory')) {$this->admin_model->updateSubcategory($id); redirect(base_url('detailSubcategory/'.$this->input->post('id')));}
+    elseif ($this->input->post('deleteSubcategory')) {$this->admin_model->deleteSubcategory($id);redirect(base_url('category'));}
+    $data['content'] = $this->admin_model->cDetailSubcategory($id);
     $this->load->view('template', $data);
   }
 

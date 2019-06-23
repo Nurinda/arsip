@@ -224,6 +224,7 @@ class Admin_model extends CI_model{
     $this->updateData('category', 'id', $id, 'id', $this->input->post('id'));
     $this->updateData('category', 'id', $id, 'category', $this->input->post('category'));
     $this->updateData('sub_category', 'id_category', $id, 'id_category', $this->input->post('id'));
+    $this->updateData('archive', 'category', $id, 'id_category', $this->input->post('id'));
   }
 
   public function createSubcategory($id)
@@ -232,5 +233,26 @@ class Admin_model extends CI_model{
     $this->db->insert('sub_category', $data);
   }
 
+  public function cDetailSubcategory($id)
+  {
+    $data['detail'] = $this->getDataRow('sub_category', 'id', $id);
+    $data['title'] = 'Detail Sub Kategori Arsip';
+    $data['view_name'] = 'detailSubcategory';
+    $data['notification'] = 'no';
+    return $data;
+  }
+
+  public function updateSubcategory($id)
+  {
+    $this->updateData('sub_category', 'id', $id, 'id', $this->input->post('id'));
+    $this->updateData('sub_category', 'id', $id, 'sub_category', $this->input->post('sub_category'));
+    $this->updateData('archive', 'sub_category', $id, 'sub_category', $this->input->post('id'));
+  }
+
+  public function deleteSubcategory($id)
+  {
+    $this->deleteData('sub_category', 'id', $id);
+    
+  }
 }
  ?>

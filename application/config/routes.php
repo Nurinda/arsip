@@ -19,6 +19,7 @@ $route['account'] = 'admin/account';
 $route['detailAccount/(:any)'] = 'admin/detailAccount/$1';
 $route['category'] = 'admin/category';
 $route['detailCategory/(:any)'] = 'admin/detailCategory/$1';
+$route['detailSubcategory/(:any)'] = 'admin/detailSubcategory/$1';
 
 
 #CONTRIBUTOR AREA
