@@ -59,7 +59,7 @@ class Admin extends CI_Controller{
     $keyword = null;
     if ($this->input->post('search')) {$keyword = $this->input->post('keyword');}
     elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory($id);}
-
+    elseif ($this->input->post('createSubcategory')) {$this->admin_model->createSubcategory($id);}
     $data['content'] = $this->admin_model->cDetailCategory($id, $keyword);
     $this->load->view('template', $data);
   }

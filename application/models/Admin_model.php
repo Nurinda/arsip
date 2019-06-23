@@ -226,5 +226,11 @@ class Admin_model extends CI_model{
     $this->updateData('sub_category', 'id_category', $id, 'id_category', $this->input->post('id'));
   }
 
+  public function createSubcategory($id)
+  {
+    $data = array('id' => $this->input->post('id'), 'id_category' => $id, 'sub_category' => $this->input->post('sub_category'));
+    $this->db->insert('sub_category', $data);
+  }
+
 }
  ?>
