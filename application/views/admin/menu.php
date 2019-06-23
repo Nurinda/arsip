@@ -16,7 +16,11 @@
     <p>Arsip</p>
   </a>
 </li>
-
+<li class="nav-item active">
+  <a class="nav-link" href="<?php echo base_url('category'); ?>">
+    <i class="material-icons">subtitles</i> Kategori
+  </a>
+</li>
 <li class="nav-item active">
   <a class="nav-link" href="<?php echo base_url('profile'); ?>">
     <i class="material-icons">person</i> Profil

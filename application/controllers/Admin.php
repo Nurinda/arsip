@@ -45,16 +45,24 @@ class Admin extends CI_Controller{
     $this->load->view('template', $data);
   }
 
-  public function detailAdmin($id)
+  public function category()
   {
-    if ($this->input->post('updateDocument')) {$operation = $this->admin_model->updateDocument($id);}
-    elseif ($this->input->post('deleteDocument')) {$operation = $this->admin_model->deleteDocument($id); if($operation['status']==1){redirect(base_url($operation['redirect']));}}
-    elseif ($this->input->post('uploadDocument')) {$operation = $this->admin_model->uploadRevision($id);}
-    $data['content'] = $this->admin_model->cDetailDocument($id);
+    $keyword = null;
+    if($this->input->post('search')){$keyword = $this->input->post('keyword');}
+    else if($this->input->post('createCategory')){$this->admin_model->createCategory(); redirect(base_url('category'));}
+    $data['content'] = $this->admin_model->cCategory($keyword);
     $this->load->view('template', $data);
-
   }
 
+  public function detailCategory($id)
+  {
+    $keyword = null;
+    if ($this->input->post('search')) {$keyword = $this->input->post('keyword');}
+    elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory($id);}
+
+    $data['content'] = $this->admin_model->cDetailCategory($id, $keyword);
+    $this->load->view('template', $data);
+  }
 
 }
  ?>

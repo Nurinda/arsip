@@ -17,7 +17,8 @@ $route['detailArchive/(:any)'] = 'account/detailArchive/$1';
 $route['webConf'] = 'admin/webConf';
 $route['account'] = 'admin/account';
 $route['detailAccount/(:any)'] = 'admin/detailAccount/$1';
-//$route['detailAdmin/(:any)'] = 'admin/detailAdmin/$1';
+$route['category'] = 'admin/category';
+$route['detailCategory/(:any)'] = 'admin/detailCategory/$1';
 
 
 #CONTRIBUTOR AREA

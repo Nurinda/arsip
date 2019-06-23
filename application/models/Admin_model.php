@@ -143,14 +143,8 @@ class Admin_model extends CI_model{
 
   public function cAccount($notification, $keyword)
   {
-    if ($keyword!=null) {
-
-      $data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%" ')->result();
-
-    } else {
-
-      $data['account'] = $this->admin_model->getAllData('account');
-    }
+    if ($keyword!=null) {$data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%" ')->result();}
+    else {$data['account'] = $this->admin_model->getAllData('account');}
     $data['title'] = 'Pengaturan Akun';
     $data['view_name'] = 'account';
     $data['notification'] = 'account'.$notification;
@@ -193,49 +187,43 @@ class Admin_model extends CI_model{
     return $operation;
   }
 
-  public function cDetailDocument($id)
-  {
-    $data['detail'] = $this->getDataRow('view_document', 'id', $id);
-    $data['title'] = 'Detail Dokumen';
-    $data['view_name'] = 'detail';
-    $data['notification'] = 'no';
-    return $data;
-  }
-
-  public function updateDocument($id)
-  {
-    $data = array('document_name' => $this->input->post('document_name'), 'document_info' => $this->input->post('document_info'));
-    $where = array('id' => $id );
-    $this->db->where($where);
-    $operation['status'] = $this->db->update('document', $data);
-    return $operation;
-  }
-
-  public function deleteDocument($id)
-  {
-    if (md5($this->input->post('password'))==$this->session->userdata['password']) {
-      unlink('./assets/upload/'.$this->getDataRow('document', 'id', $id)->address);
-      $operation['status'] = $this->deleteData('document', 'id', $id);
-      $operation['redirect'] = 'document';
-    } else {
-      $operation['redirect'] = 'detail'.ucfirst($this->session->userdata['role']).'/'.$id;
-      $operation['status'] = 0;
-    }
-    return $operation;
-  }
-
-  public function uploadRevision($id)
-  {
-    $upload = $this->uploadFile($this->getDataRow('document', 'id', $id)->document_name, 'pdf|xls|xlsx|doc|docx|jpg');
-    if($upload['status']==1){
-//      $this->updateData('document', 'id', $id, 'address', 'address' => str_replace(' ','_',$this->input->post('document_name')).$this->upload->data('file_ext'));
-    }
-    return $upload;
-  }
 
   public function updateCapacity($id)
   {
     return $this->updateData('contributor', 'id', $id, 'capacity', $this->input->post('capacity'));
+  }
+
+  public function cCategory($keyword)
+  {
+    if ($keyword == null) {$data['category'] = $this->getAllData('view_category');}
+    else {$data['category'] = $this->db->query('select * from view_category where category LIKE "%'.$keyword.'%" or id LIKE "%'.$keyword.'%"')->result();}
+    $data['title'] = 'Konfigurasi Kategori Arsip';
+    $data['view_name'] = 'category';
+    $data['notification'] = 'no';
+    return $data;
+  }
+
+  public function createCategory()
+  {
+    return $this->db->insert('category', $data = array('id'=> $this->input->post('id'), 'category' => $this->input->post('category')));
+  }
+
+  public function cDetailCategory($id, $keyword)
+  {
+    if ($keyword==null) {$data['subcategory'] = $this->getSomeData('sub_category', 'id_category', $id);}
+    else {$data['subcategory'] = $this->db->query('select * from sub_category where id_category = '.$id.' and sub_category LIKE "%'.$keyword.'%" or id LIKE "%'.$keyword.'%" order by id')->result();}
+    $data['detail'] = $this->getDataRow('category', 'id', $id);
+    $data['title'] = 'Detail Kategori Arsip';
+    $data['view_name'] = 'detailCategory';
+    $data['notification'] = 'no';
+    return $data;
+  }
+
+  public function updateCategory($id)
+  {
+    $this->updateData('category', 'id', $id, 'id', $this->input->post('id'));
+    $this->updateData('category', 'id', $id, 'category', $this->input->post('category'));
+    $this->updateData('sub_category', 'id_category', $id, 'id_category', $this->input->post('id'));
   }
 
 }
