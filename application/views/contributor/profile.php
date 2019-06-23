@@ -19,20 +19,34 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Nama Lengkap</label>
                 <input type="text" name="fullname" class="form-control" placeholder="Masukan nama lengkap anda" value="<?php echo $this->session->userdata['fullname']; ?>" required>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 pl-1">
               <div class="form-group">
-                <label>Asal</label>
-                <input type="text" name="asal" class="form-control" placeholder="Masukan nama asal instansi anda" value="<?php echo $this->session->userdata['asal']; ?>" required>
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Masukan email anda" value="<?php echo $this->session->userdata['email']; ?>" required>
               </div>
             </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Alamat</label>
+                <input type="text" name="address" class="form-control" placeholder="Masukan alamat instansi anda" value="<?php echo $this->session->userdata['address']; ?>" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Instansi</label>
+                <input type="text" name="institute" class="form-control" placeholder="Masukan nama instansi anda" value="<?php echo $this->session->userdata['institute']; ?>" required>
+              </div>
+            </div>
+
           </div>
 
           <div class="button-container">

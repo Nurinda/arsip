@@ -51,6 +51,12 @@ class Account_model extends CI_model{
     return $status;
   }
 
+  public function deleteData($table, $var, $val)
+  {
+    $where = array($var => $val);
+    return $this->db->delete($table, $where);
+
+  }
 
 
   public function uploadFile($filename,$allowedFile)
@@ -84,44 +90,34 @@ class Account_model extends CI_model{
   public function setSession($id)
   {
     $account = $this->getDataRow('account', 'id', $id);
-    $data= array(
-      'login' => true,
-      'role' => $account->role,
-      'id' => $account->id,
-      'username' => $account->username,
-      'password' => $account->password,
-      'fullname' => $account->fullname,
-      'email'     => $account->email,
-      'display_picture' => $account->display_picture,
-    );
+    if ($account->role == 'admin') {
+      $data= array(
+        'login' => true,
+        'role' => $account->role,
+        'id' => $account->id,
+        'username' => $account->username,
+        'password' => $account->password,
+        'fullname' => $account->fullname,
+        'email'     => $account->email,
+        'display_picture' => $account->display_picture,
+      );
+    } elseif ($account->role == 'contributor') {
+      $data= array(
+        'login' => true,
+        'role' => $account->role,
+        'id' => $account->id,
+        'username' => $account->username,
+        'password' => $account->password,
+        'fullname' => $account->fullname,
+        'email'     => $account->email,
+        'display_picture' => $account->display_picture,
+        'institute' => $this->getDataRow('contributor', 'id', $id)->institute,
+        'address' => $this->getDataRow('contributor', 'id', $id)->address,
+      );
+
+    }
     return $data;
   }
-
-  // public function setSession($item)
-  // {
-  //   $account = $this->getDataRow('video', 'item', $item);
-  //   $data= array(
-  //     'login' => true,
-  //     'role' => $account->role,
-  //     'id' => $account->id,
-  //     'username' => $account->username,
-  //     'password' => $account->password,
-  //     'fullname' => $account->fullname,
-  //     'asal'     => $account->asal,
-  //     'display_picture' => $account->display_picture,
-  //   );
-  //   return $data;
-  // }
-
-  // function video()
-  // {
-  //   $this->db->select('*');
-  //   $this->db->from('video');
-  //   $query = $this->db->get();
-  //   $result = $query->result();
-  //   return $result;
-  // }
-
 
 
   //application
@@ -242,7 +238,7 @@ class Account_model extends CI_model{
   public function deleteArchive($id)
   {
     $data = 3;
-    if ($this->input->post('password')==$this->session->userdata['password']) {$data = $this->deleteDP('archive', 'id', $id);}
+    if (md5($this->input->post('password'))==$this->session->userdata['password']) {$data = $this->deleteData('archive', 'id', $id);}
     return $data;
   }
 

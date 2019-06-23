@@ -65,7 +65,7 @@
         <div class="col-md-7">
           <div class="form-group">
             <label>Link Video</label>
-            <input type="text" name="link" class="form-control" placeholder="Masukan alamat youtube" value="<?php echo $content['detail']->link; ?>" disabled>
+            <input type="text" name="link" class="form-control" placeholder="Masukan alamat youtube" value="<?php echo 'https://www.youtube.com/watch?v='.$content['detail']->link; ?>" disabled>
           </div>
         </div>
       </div>
