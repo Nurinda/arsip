@@ -36,6 +36,7 @@
                   </div>
                   <div class="button-container">
                     <button type="submit" class="btn btn-success" name="updateCategory" value="updateCategory">Update Kategori</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletecategory">Hapus kategori</button>
                   </div>
                 </form>
               </div>
@@ -142,7 +143,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="deleteSubcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deletecategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form  method="post">
       <div class="modal-content">
@@ -161,7 +162,7 @@
         </div>
 
         <div class="modal-footer modal-danger">
-          <button type="submit" class="btn btn-danger" name="deleteCategory" value="deleteCategory">Hapus kategori</button>
+          <button type="submit" class="btn btn-danger" name="deletecategory" value="deletecategory">Hapus kategori</button>
           <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
         </div>
       </div>

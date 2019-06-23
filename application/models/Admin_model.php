@@ -254,5 +254,16 @@ class Admin_model extends CI_model{
     $this->deleteData('sub_category', 'id', $id);
     
   }
+  public function deletecategory($id)
+  {
+    if (md5($this->input->post('password'))==$this->session->userdata['password']) {
+      $delete['status'] = $this->deleteData('category', 'id', $id);
+    } else {
+      $delete['status'] = 0;
+    }
+    return (int)$delete['status']+1;
+    //$this->deleteData('category', 'id', $id);
+    
+  }
 }
  ?>
