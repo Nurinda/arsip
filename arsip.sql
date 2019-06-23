@@ -11,7 +11,7 @@
  Target Server Version : 100203
  File Encoding         : 65001
 
- Date: 20/06/2019 22:20:17
+ Date: 23/06/2019 19:59:49
 */
 
 SET NAMES utf8mb4;
@@ -30,14 +30,14 @@ CREATE TABLE `account`  (
   `display_picture` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `role` varchar(11) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of account
 -- ----------------------------
 INSERT INTO `account` VALUES (1, 'nurin', '4a7d1ed414474e4033ac29ccb8653d9b', 'nurindarm@gmaill.com', 'Nurinda Ramadhanty Maula', 'display_picture_1.jpg', 'admin');
-INSERT INTO `account` VALUES (8, 'windi', '4a7d1ed414474e4033ac29ccb8653d9b', 'Windi Putri', 'Windi Putri Nur Aini', 'no.jpg', 'contributor');
-INSERT INTO `account` VALUES (9, 'A', '4a7d1ed414474e4033ac29ccb8653d9b', NULL, 'AA', 'no.jpg', 'contributor');
+INSERT INTO `account` VALUES (8, 'windi', '4a7d1ed414474e4033ac29ccb8653d9b', 'Windi@gmail.com', 'Windi Putri Nur Aini', 'no.jpg', 'contributor');
+INSERT INTO `account` VALUES (10, 'AAS', '4a7d1ed414474e4033ac29ccb8653d9b', NULL, 'AASS', 'no.jpg', 'contributor');
 
 -- ----------------------------
 -- Table structure for archive
@@ -61,13 +61,18 @@ CREATE TABLE `archive`  (
   `status` int(2) NULL DEFAULT NULL,
   `link` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `video_number` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `category` int(11) NULL DEFAULT NULL,
+  `sub_category` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of archive
 -- ----------------------------
-INSERT INTO `archive` VALUES (1, 'Acara Datangnya Presiden ke Banyumanik', 'Kunjungan Kerja Gubernur Jateng DI Pembantu Gub wil Pati, Pekalongan, Kedu, Surakarta, Semarang', 'Bakohumas Setwida Jateng', 'Setwida Jateng', '2019-05-15', 'Banyumanik', 1, 30, 28, 'SHV', 'lemari', '2019-05-28 15:19:18', 8, 0, 'www.yutub.com/nurin', 'SBR 23');
+INSERT INTO `archive` VALUES (1, 'Acara Datangnya Presiden ke Banyumanik', 'Kunjungan Kerja Gubernur Jateng DI Pembantu Gub wil Pati, Pekalongan, Kedu, Surakarta, Semarang', 'Bakohumas Setwida Jateng', 'Setwida Jateng', '2019-05-15', 'Banyumanik', 1, 30, 28, 'SHV', 'lemari', '2019-05-28 15:19:18', 8, 0, 'oFwsgSFFSPc', 'SBR 23', 0, 12);
+INSERT INTO `archive` VALUES (2, 'Coba', 'Percobaan', 'Coba', 'Sony Pictures', '2019-02-02', 'Semarang', 10, 10, 2, NULL, 'Semarang', '2019-06-23 15:22:41', 8, NULL, 'kbFjyHhpFqU', '299', 0, 50);
+INSERT INTO `archive` VALUES (3, 'Coba', 'Percobaan', 'Coba', 'Sony Pictures', '2019-02-02', 'Semarang', 10, 10, 2, NULL, 'Semarang', '2019-06-23 15:25:08', 8, NULL, 'kbFjyHhpFqU', '299', 0, 50);
+INSERT INTO `archive` VALUES (5, 'coba', 'niwni', 'ninini', 'idwih', '2019-12-12', 'ninini', 12, 12, 2, NULL, 'SVS', '2019-06-23 16:02:23', 10, NULL, 'oFwsgSFFSPc', '299', 0, 40);
 
 -- ----------------------------
 -- Table structure for category
@@ -83,7 +88,8 @@ CREATE TABLE `category`  (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (0, 'UMUM', NULL);
+INSERT INTO `category` VALUES (0, 'UMUMS', NULL);
+INSERT INTO `category` VALUES (12, 'Coba Kategori', NULL);
 INSERT INTO `category` VALUES (100, 'PEMERINTAHAN', NULL);
 INSERT INTO `category` VALUES (200, 'POLITIK', NULL);
 INSERT INTO `category` VALUES (300, 'KEAMANAN DAN KETERTIBAN UMUM', NULL);
@@ -109,8 +115,8 @@ CREATE TABLE `contributor`  (
 -- ----------------------------
 -- Records of contributor
 -- ----------------------------
-INSERT INTO `contributor` VALUES (0, 'UNDIP', NULL, NULL);
-INSERT INTO `contributor` VALUES (8, 'Arpusda', 'Semarang', 100);
+INSERT INTO `contributor` VALUES (8, 'ArpusdaS', 'Semarang', 10);
+INSERT INTO `contributor` VALUES (10, 'ASC', NULL, 100);
 
 -- ----------------------------
 -- Table structure for sub_category
@@ -126,8 +132,8 @@ CREATE TABLE `sub_category`  (
 -- ----------------------------
 -- Records of sub_category
 -- ----------------------------
-INSERT INTO `sub_category` VALUES (10, 'URUSAN DALAM', 0);
 INSERT INTO `sub_category` VALUES (20, 'BARANG DAN JASA', 0);
+INSERT INTO `sub_category` VALUES (22, 'Coba', 0);
 INSERT INTO `sub_category` VALUES (30, 'KEKAYAAN DAERAH', 0);
 INSERT INTO `sub_category` VALUES (40, 'PERPUSTAKAAN/DOKUMEN/KEARSIPAN/SANDI', 0);
 INSERT INTO `sub_category` VALUES (50, 'PERENCANAAN DAN EVALUASI', 0);
@@ -217,5 +223,45 @@ WHERE
 	a.id_contributor = b.id 
 AND 
   a.id_contributor = c.id ;
+
+-- ----------------------------
+-- View structure for view_category
+-- ----------------------------
+DROP VIEW IF EXISTS `view_category`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_category` AS SELECT
+	a.id,
+	a.category,
+	a.info,
+	count( b.id ) as sub_count
+FROM
+	`category` AS a
+	LEFT JOIN `sub_category` AS b ON a.id = b.id_category 
+GROUP BY
+	a.id
+ORDER BY
+	a.id ASC ;
+
+-- ----------------------------
+-- View structure for view_contributor
+-- ----------------------------
+DROP VIEW IF EXISTS `view_contributor`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_contributor` AS SELECT
+	a.id,
+	a.username,
+	a.`password`,
+	a.fullname,
+	a.email,
+	a.role,
+	a.display_picture,
+	c.institute,
+	c.address,
+	c.capacity,
+	count(b.id) as storage_used,
+	(c.capacity - count(b.id)) as storage_available
+FROM
+	`account` AS a
+	LEFT JOIN `archive` AS b ON a.id = b.id_contributor
+	INNER JOIN `contributor` AS c ON c.id = a.id
+GROUP BY a.id ;
 
 SET FOREIGN_KEY_CHECKS = 1;
