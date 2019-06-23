@@ -213,3 +213,29 @@
             </form>
           </div>
         </div>
+
+        <?php $no = 1; foreach ($content['video'] as $item):?>
+
+        <div class="modal fade" id="viewVideo<?php echo $item->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <form  method="post">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Lihat Video</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <iframe width="100%" height="250px" src="https://www.youtube.com/embed/<?php echo $item->link; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="modal-footer modal-danger">
+                  <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      <?php endforeach; ?>
