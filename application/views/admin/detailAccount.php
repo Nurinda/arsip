@@ -103,7 +103,7 @@
               <th class="text-center">Opsi</th>
             </tr>
           </thead>
-          <?php $no = 1; foreach ($content['archive'] as $item):?>
+          <?php $no = 1; foreach ($content['archive'] as $item): if($item->id_contributor != $content['account']->id) {continue;}?>
             <tr>
               <td align="center"><?php echo $no; ?> </td>
               <td align="center"><?php echo $item->title; ?> </td>

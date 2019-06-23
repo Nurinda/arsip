@@ -161,7 +161,7 @@ class Admin_model extends CI_model{
   {
     $data = array('username' => $this->input->post('username'), 'fullname' => $this->input->post('fullname'), 'role' => 'contributor', 'password'=>md5('0000'), 'display_picture' => 'no.jpg');
     $this->db->insert('account', $data);
-    $data = array('id' => $this->db->insert_id(), 'institute' => $this->input->post('institute'));
+    $data = array('id' => $this->db->insert_id(), 'institute' => $this->input->post('institute'), 'capacity'=> 100);
     $status['status'] = $this->db->insert('contributor', $data);
     return $status;
   }

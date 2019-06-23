@@ -35,7 +35,7 @@
                           <td align="center"><?php echo $item->title; ?> </td>
                           <td align="center"><?php echo $item->institute; ?></td>
                           <td align="center"><?php if($item->status==1){echo 'Dipinjam';} else {echo 'Tersedia';} ?></td>
-                          <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning">Detail</a> </td>
+                          <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning"><i class="material-icons">book</i>&nbsp;&nbsp; Detail</a><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewVideo<?php echo $item->id; ?>"><i class="material-icons">play_arrow</i>&nbsp;&nbsp; Lihat Video</button> </td>
                         </tr>
                         <?php $no++; endforeach; ?>
                       </table>
@@ -60,7 +60,7 @@
                             <td align="center"><?php echo $item->title; ?> </td>
                             <td align="center"><?php echo $item->institute; ?></td>
                             <td align="center"><?php if($item->status==1){echo 'Dipinjam';} else {echo 'Tersedia';} ?></td>
-                            <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning">Detail</a> </td>
+                            <td align="center"><a href="<?php echo base_url('detailArchive/'.$item->id);?>" class="btn btn-warning"><i class="material-icons">book</i>&nbsp;&nbsp; Detail</a><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewVideo<?php echo $item->id; ?>"><i class="material-icons">play_arrow</i>&nbsp;&nbsp; Lihat Video</button> </td>
                           </tr>
                           <?php $no++; endforeach; ?>
                         </table>

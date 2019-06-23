@@ -100,7 +100,7 @@ class Contributor_model extends CI_model{
         'category' => $this->getDataRow('sub_category', 'id', $this->input->post('sub_category'))->id_category,
         'sub_category'=> $this->input->post('sub_category'),
        );
-       $this->db->insert('archive', $data);
+        $this->db->insert('archive', $data);
 
     }
   }
