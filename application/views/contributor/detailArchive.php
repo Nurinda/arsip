@@ -104,8 +104,8 @@
 
       <div class="button-container">
         <a href="<?php echo base_url('archive'); ?>" class="btn btn-grey">Kembali</a>
-        <a href="<?php echo base_url('editArchive/'.$content['detail']->id); ?>" class="btn btn-info">Edit Arsip</a>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteArchive">Hapus Arsip</button>
+        <a href="<?php echo base_url('editArchive/'.$content['detail']->id); ?>" class="btn btn-info" <?php if($content['detail']->contributor!=$this->session->userdata['id']){echo 'hidden';} ?>>Edit Arsip</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteArchive" <?php if($content['detail']->contributor!=$this->session->userdata['id']){echo 'hidden';} ?>>Hapus Arsip</button>
 
       </div>
     </form>

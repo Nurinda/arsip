@@ -141,3 +141,30 @@
     </form>
   </div>
 </div>
+
+<div class="modal fade" id="deleteSubcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form  method="post">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hapus kategori ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Apakah anda sudah yakin menghapus  kategori ini? silahkan lanjutkan dengan memasukan password akun anda</p>
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Masukan password akun anda" value=""  required>
+          </div>
+        </div>
+
+        <div class="modal-footer modal-danger">
+          <button type="submit" class="btn btn-danger" name="deleteCategory" value="deleteCategory">Hapus kategori</button>
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
